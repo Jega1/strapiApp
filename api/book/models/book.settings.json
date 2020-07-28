@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "books",
+  "info": {
+    "name": "book"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "nom": {
+      "type": "string"
+    },
+    "resume": {
+      "type": "text"
+    },
+    "date_publication": {
+      "type": "date"
+    },
+    "dispo": {
+      "type": "boolean"
+    },
+    "langue": {
+      "type": "enumeration",
+      "enum": [
+        "Fr",
+        "En",
+        "Et",
+        "All"
+      ]
+    },
+    "type": {
+      "model": "type",
+      "via": "books"
+    },
+    "authors": {
+      "collection": "author",
+      "via": "book"
+    }
+  }
+}
