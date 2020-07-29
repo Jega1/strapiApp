@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/books/author/:author",
+      "handler": "book.findByAuthor",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
