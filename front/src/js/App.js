@@ -1,54 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
-import { getUserLocalStorage } from "./utils/local-storage";
-import { addAuth } from "./utils/api";
 
-import Header from "./component/header";
-import Home from "./page/home";
-import Theme from "./page/themes";
-import Login from './component/login'
-import Modale from './component/modale'
-import Question from "./page/question";
+import { useDispatch, useSelector } from "react-redux";
 
-const clickOutsideModale = event => {
-	if (event.target.id === "OutsideModale")
-		dispatch({ type: "TOGGLE_IS_MODAL_SHOWING" });
-}
+import Home from "./pages/home";
+
+import Layout from "./components/layout";
 
 const App = () => {
-	const dispatch = useDispatch()
-	const isModalShowing =  useSelector(state => state.homeStore.isModalShowing)
-	const clickOutsideModale = event => {
-		if (event.target.id === 'OutsideModale') dispatch({ type: 'TOGGLE_IS_MODAL_SHOWING' })
-	}
+  const dispatch = useDispatch();
 
-	const logged = useSelector((state) => state.authStore.user.isLogged);
-	if (getUserLocalStorage() != null) {
-		let user = getUserLocalStorage();
-		if (user.token != undefined) {
-			useDispatch({ type: "SET_USER_LOGGED", payload: true });
-			addAuth(user.token);
-		}
-	}
+  useEffect(() => {
+    // dispatch(fetchUser());
+    // dispatch({ type: 'SET_TREE_NAME', payload: 'CPROK.' })
+  }, []);
 
-	return (
-		<Router>
-			<Header />
-			{isModalShowing && <Modale clickOutside={clickOutsideModale} />}
-			<Switch>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route path="/question/theme/:id">
-					<Question />
-				</Route>
-				<Route path="/login">
-					<Login />
-				</Route>
-			</Switch>
-		</Router>
-	);
-}
+  return (
+    <Router>
+      <Layout>
+        <Switch>
+          <Route path="/" component={Home} />
+        </Switch>
+      </Layout>
+    </Router>
+  );
+};
 
-export default App
+export default App;

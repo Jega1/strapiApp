@@ -1,11 +1,17 @@
-export const setUserLocalStorage = (user) => {
-  return window.localStorage.setItem("user", JSON.stringify(user));
-};
+export const setStorageToken = (token) => {
+    return window.localStorage.setItem('token', JSON.stringify(token))
+}
 
-export const getUserLocalStorage = () => {
-  return JSON.parse(window.localStorage.getItem("user"));
-};
+export const getStorageToken = () => {
+    return JSON.parse(window.localStorage.getItem('token'))
+}
 
-export const clearUserLocalStorage = () => {
-  window.localStorage.removeItem("user");
-};
+export const clearToken = () => {
+    window.localStorage.removeItem('');
+}
+
+// Si je suis un autre fichier
+
+// import {setUser} from 'local-storage';
+// import {getUser} from 'local-storage';
+// import {clearUser} from 'local-storage';

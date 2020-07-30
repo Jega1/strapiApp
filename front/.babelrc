@@ -1,0 +1,4 @@
+//Is used to be able to use async & await
+{
+  "plugins": ["@babel/plugin-transform-runtime"]
+}
